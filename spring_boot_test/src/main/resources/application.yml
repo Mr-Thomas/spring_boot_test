@@ -1,2 +1,6 @@
 server:
   port: 8089
+
+person:
+  name: zhangsan
+  age: 18
