@@ -22,6 +22,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  *  eg:以 ServletWebServerFactoryAutoConfiguration 为例,实现自定义配置覆盖默认配置
  *      1).@EnableConfigurationProperties(ServerProperties.class)  代表加载ServerProperties服务器配置属性类
  *      2).进入ServerProperties.class
+ *          @ConfigurationProperties(prefix = "server", ignoreUnknownFields = true)
  *          prefix = "server" 表示SpringBoot配置文件中的前缀，SpringBoot会将配置文件中以server开始的属性映射到该类的字段中 [截图]
  *
  */
