@@ -2,10 +2,6 @@ package com.wwj00.nancy.rabbitMQ;
 
 import com.rabbitmq.client.*;
 import lombok.extern.slf4j.Slf4j;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import java.io.IOException;
 import java.util.concurrent.TimeoutException;
@@ -14,6 +10,12 @@ import java.util.concurrent.TimeoutException;
  * Created by Nancy on 2019/7/29 22:03
  *
  * rabbitMQ入门程序 消费者
+ *
+ * Work queues [工作队列模式]  即入门程序 开启多个消费者 ，多个消费端共同消费同一个队列中的消息
+ * 应用场景：对于 任务过重或任务较多情况使用工作队列可以提高任务处理的速度。
+ *      1、一条消息只会被一个消费者接收；
+ *      2、rabbit采用轮询的方式将消息是平均发送给消费者的；
+ *      3、消费者在处理完某条消息后，才会收到下一条消息。
  */
 @Slf4j
 public class Consumer_start {
