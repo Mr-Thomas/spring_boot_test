@@ -15,15 +15,13 @@ import java.util.concurrent.TimeoutException;
  *
  * rabbitMQ入门程序 消费者
  */
-@RunWith(SpringRunner.class)
-@SpringBootTest
 @Slf4j
 public class Consumer_start {
     //队列
     private static final String QUEUE = "helloword";
 
-    @Test
-    public void StartRabbitMQ() throws IOException, TimeoutException {
+    public static void main(String[] args)throws IOException, TimeoutException {
+
         //通过连接工厂创建连接 和 mq 建立连接
         ConnectionFactory connectionFactory = new ConnectionFactory();
         connectionFactory.setHost("127.0.0.1");
