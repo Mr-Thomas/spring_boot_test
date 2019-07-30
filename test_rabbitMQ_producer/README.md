@@ -24,17 +24,22 @@
 
     2.Publish/Subscribe  发布订阅
         1)、每个消费者监听自己的队列。 
-        2)、生产者将消息发给broker，由交换机将消息转发到绑定此交换机的每个队列，每个绑定交换机的队列都将接收 到消息
+            **(一个队列亦可以被多个消费者监听,消息轮询发给多个消费者[工作队列模式])**
+        2)、生产者将消息发给broker，由交换机将消息转发到绑定此交换机的每个队列，
+            每个绑定交换机的队列都将接收到消息
         案例：
             用户通知，当用户充值成功或转账完成系统通知用户，通知方式有短信、邮件多种方法 。 
 
-    3.Routing  路由
+    3.Routing  路由 [详情见图解]
         1)、每个消费者监听自己的队列，并且设置routingkey。 
-        2)、生产者将消息发给交换机，由交换机根据routingkey来转发消息到指定的队列。
+        2)、一个交换机可以绑定多个队列,每个队列可以设置一个或多个routingkey
+        3)、生产者将消息发给交换机 [发送消息时需指定routingkey的值]，由交换机根据routingkey来转发消息到指定的队列。
+            
 
     4.Topice  通配符
         1)、每个消费者监听自己的队列，并且设置带统配符的routingkey。
-        2)、生产者将消息发给broker，由交换机根据routingkey来转发消息到指定的队列。
+        2)、一个交换机可以绑定多个队列,每个队列可以设置一个或多个带通配符的routingkey
+        3)、生产者将消息发给broker，由交换机根据routingkey的值来匹配队列,匹配时采用通配符方式,匹配成功的将消息转发到指定的队列。
         案例：
             根据用户的通知设置去通知用户，设置接收Email的用户只接收Email，设置接收sms的用户只接收sms，设置两种 通知类型都接收的则两种通知都有效。
         本案例的需求使用Routing工作模式能否实现？ 
@@ -65,5 +70,17 @@
         建议使用 publish/subscribe，发布订阅模式比工作队列模式更强大，并且发布订阅模式可以指定自己专用的交换机。
     
     3、Routing模式和Publish/subscibe有啥区别？
-        Routing模式要求队列在绑定交换机时要指定routingkey，消息会转发到符合routingkey的队列。 
-
+        1).Publish/subscibe模式在绑定交换机时不需要指定routingKey,消息会发送到每个绑定交换机的队列.
+        2).routing模式要求队列在绑定交换机时要指定routingkey(即队列的routingkey),发送消息将消息发送到和routingkey的值相等的队列中.
+           routing模式更加强大,亦可以实现Publish/subscibe的功能
+    
+    4、Topics与Routing的区别
+        二者的基本原理相同,
+            即:生产者将消息发给交换机,交换机根据routingkey将消息转发给与routingkey匹配的队列.
+            不同:routingkey的匹配方式:
+                routing模式: 相等匹配
+                topics模式: 通配符匹配
+        符号:
+            # :匹配一个或多个词 eg: inform.# 可匹配 inform.sms, inform.email, inform.email.sms
+            * :只能匹配一个词  eg: inform.*  可匹配 inform.sms, inform.email
+        
