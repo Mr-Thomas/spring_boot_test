@@ -1,7 +1,9 @@
 package com.wwj00;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * Created by Nancy on 2019/7/29 14:12
@@ -27,6 +29,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  *
  */
 @SpringBootApplication
+@RestController
 public class SpringBootApplicationStart {
     public static void main(String[] args) {
         SpringApplication.run(SpringBootApplicationStart.class,args);

@@ -1,9 +1,5 @@
 server:
-  port: 8089
-
-person:
-  name: zhangsan
-  age: 18
+  port: 8088
 
 spring:
   rabbitmq:
@@ -16,6 +12,7 @@ spring:
     publisher-confirms: true
     # 开启发送失败退回
     publisher-returns: true
+    queues: helloObj
 
     # 消息确认机制 --- 是否开启手ack动确认模式
     # [none:不确认 auto:自动确认 manual:手动确认]
