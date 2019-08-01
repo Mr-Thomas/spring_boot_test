@@ -2,9 +2,7 @@ package com.wwj00.rabbitMQ;
 
 import com.alibaba.fastjson.JSON;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.amqp.core.Message;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
-import org.springframework.amqp.rabbit.support.CorrelationData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -31,7 +29,7 @@ public class Producer {
         Map<String, Object> map = new HashMap<String, Object>() {
             {
                 put("ACK", false);
-                put("msg", "关闭ack");
+                put("msg", "ack");
             }
         };
         String jsonString = JSON.toJSONString(map);

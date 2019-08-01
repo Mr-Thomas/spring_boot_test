@@ -61,7 +61,6 @@ public class RabbitConfig {
 
     /**
      * Fanout 发布订阅模式 对应的 交换机
-     *
      * @return
      */
     @Bean
