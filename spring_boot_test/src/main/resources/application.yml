@@ -24,5 +24,9 @@ spring:
         acknowledge-mode: manual
       simple:
         acknowledge-mode: manual
+        #提高并发
+        concurrency: 5  #最低5
+        max-concurrency: 15   #最高15
+        prefetch: 10  #预拉取10条消息
 
 
