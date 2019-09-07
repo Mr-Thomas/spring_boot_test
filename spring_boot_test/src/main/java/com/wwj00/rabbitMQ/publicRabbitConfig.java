@@ -26,7 +26,8 @@ public class publicRabbitConfig {
     private SimpleRabbitListenerContainerFactoryConfigurer factoryConfigurer;
 
     /**
-     * 单一消费者
+     * 单一消费者   在消费方指定
+     * @RabbitListener(queues = "队列名称",containerFactory = "simpleListenerContainer")
      * @return
      */
     @Bean(name = "simpleListenerContainer")
